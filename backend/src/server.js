@@ -1,6 +1,11 @@
 const app = require("./app")
+const connectDb = require("./config/db")
 
-app.listen(3000, () => {
-    console.log("Server started at port 3000");
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
+    console.log(`Server started at http://localhost:${PORT}`);
 
 })
+
+connectDb();

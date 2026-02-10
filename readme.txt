@@ -1,0 +1,13 @@
+//Expense tracker
+
+Core Features:
+- Add tranaction (enter title, trans. type, amount)
+
+Datatable for showwing transactions desceniding as per date, 
+highlighting income or expenses in red or green color
+
+total expenses , total income, current balance
+
+APIS:
+
+auth
