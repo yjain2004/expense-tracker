@@ -64,6 +64,26 @@ async function remove(req, res) {
     })
 }
 
+async function removeAll(req, res) {
+
+
+    const entry = await entryModel.find()
+    console.log(entry);
+
+
+    if (entry.length <= 0) {
+        return res.status(400).json({
+            message: "No Entries Found"
+        })
+    }
+
+    await entryModel.deleteMany()
+
+    return res.status(200).json({
+        message: "All Entries Deleted successfully"
+    })
+}
+
 async function fetchEntry(req, res) {
     const id = req.params.id;
 
@@ -102,6 +122,7 @@ module.exports = {
     create,
     fetch,
     remove,
+    removeAll,
     fetchEntry
 
 }

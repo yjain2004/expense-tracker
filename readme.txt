@@ -12,3 +12,16 @@ APIS:
 
 auth
 entry (create, delete, fetchall, fetchone)
+
+_____________
+
+After mvp:
+
+delete user
+graphs
+forgot password
+logo and branding
+
+option to enter manual date
+
+responsive dashboard

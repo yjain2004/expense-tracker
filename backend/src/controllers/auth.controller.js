@@ -67,7 +67,11 @@ async function login(req, res) {
 
     //responding success message
     return res.status(200).json({
-        message: "User logged in"
+        message: "User logged in",
+        user: {
+            id: user._id,
+            email: user.email
+        }
     })
 }
 
