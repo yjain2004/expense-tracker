@@ -5,6 +5,7 @@ const cors = require("cors")
 
 //importing routes
 const authRoutes = require("./routes/auth.routes")
+const entryRoutes = require("./routes/entry.routes")
 
 //default middlewares
 require("dotenv").config()
@@ -14,6 +15,7 @@ app.use(cookieParser())
 
 
 app.use("/api/auth", authRoutes)
+app.use("/api/data", entryRoutes)
 
 app.get("/", (req, res) => {
     res.send("Hello world")
