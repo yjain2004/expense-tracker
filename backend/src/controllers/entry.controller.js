@@ -2,33 +2,39 @@ const mongoose = require("mongoose");
 const entryModel = require("../models/entry.model")
 
 async function create(req, res) {
-    const { title, type, amount } = req.body;
+    const { title, type, amount, category } = req.body;
 
     //checking if there is no blank field
-    if (!title.trim() || !type.trim() || !amount.trim()) {
+    if (!title.trim() || !type.trim() || !amount.trim() || !category.trim()) {
         return res.status(400).json({
             message: "All fields are required"
         })
     }
 
+
     //saving in db and returning the response
     const entry = await entryModel.create({
         title: title.trim(),
         type: type.trim(),
-        amount: amount.trim()
+        category: category.trim(),
+        amount: amount.trim(),
+        user: req.user._id
     })
 
     return res.status(200).json({
         message: {
             title,
             type,
-            amount
+            category,
+            amount,
         }
     })
 }
 
 async function fetch(req, res) {
-    const entries = await entryModel.find();
+    const entries = await entryModel.find({
+        user: req.user._id
+    });
     return res.status(200).json({
         entries
     })
@@ -45,7 +51,8 @@ async function remove(req, res) {
     }
 
     const entry = await entryModel.findOne({
-        _id: id
+        _id: id,
+        user: req.user._id
     })
 
 
@@ -77,7 +84,9 @@ async function removeAll(req, res) {
         })
     }
 
-    await entryModel.deleteMany()
+    await entryModel.deleteMany({
+        user: req.user._id
+    })
 
     return res.status(200).json({
         message: "All Entries Deleted successfully"
@@ -112,7 +121,8 @@ async function fetchEntry(req, res) {
             id: entry._id,
             title: entry.title,
             type: entry.type,
-            amount: entry.amount
+            amount: entry.amount,
+            category: entry.category
 
         }
     })

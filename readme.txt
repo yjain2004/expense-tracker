@@ -17,7 +17,8 @@ _____________
 
 After mvp:
 
-delete user
+type: subcategory
+
 graphs
 forgot password
 logo and branding
@@ -25,3 +26,7 @@ logo and branding
 option to enter manual date
 
 responsive dashboard
+
+time color coding
+
+search and filter transactions

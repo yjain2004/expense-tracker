@@ -2,10 +2,13 @@ const express = require("express");
 const router = express.Router();
 const entryController = require("../controllers/entry.controller")
 
-router.post("/create", entryController.create)
-router.post("/fetch", entryController.fetch)
-router.delete("/delete/:id", entryController.remove)
-router.delete("/delete/entries/all", entryController.removeAll)
-router.post("/fetch/:id", entryController.fetchEntry)
+//importing middlewares
+const authMiddleware = require("../middlewares/auth.middleware")
+
+router.post("/create", authMiddleware, entryController.create)
+router.post("/fetch", authMiddleware, entryController.fetch)
+router.delete("/delete/:id", authMiddleware, entryController.remove)
+router.delete("/delete/entries/all", authMiddleware, entryController.removeAll)
+router.post("/fetch/:id", authMiddleware, entryController.fetchEntry)
 
 module.exports = router;

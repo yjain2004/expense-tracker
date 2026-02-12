@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose")
 
 const entrySchema = new mongoose.Schema({
     title: {
@@ -9,8 +10,17 @@ const entrySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    category: {
+        type: String,
+        required: true,
+    },
     amount: {
         type: String,
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
         required: true
     }
 }, { timestamps: true })
