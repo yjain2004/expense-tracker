@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
 
     async function login(data) {
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL} / api / auth / login`, data, { withCredentials: true })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, data, { withCredentials: true })
             setuser(res.data.user)
             setIsAuth(true)
             return res;
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
 
     async function logout() {
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL} / api / auth / logout`, {}, { withCredentials: true })
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {}, { withCredentials: true })
             setuser(null)
             setIsAuth(false)
             setLoading(false)
