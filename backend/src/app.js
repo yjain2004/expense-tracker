@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors")
-app.set("trust proxy", 1);
+app.enable("trust proxy");
 
 
 //importing routes
