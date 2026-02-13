@@ -68,6 +68,7 @@ async function login(req, res) {
         secure: true,
         samSite: "none",
         maxAge: 7 * 24 * 60 * 60 * 1000,
+        path: "/"
     })
 
     //responding success message
