@@ -128,11 +128,36 @@ async function fetchEntry(req, res) {
     })
 }
 
+async function getSummary(req, res) {
+    const { startDate, endDate } = req.body;
+
+    // Convert string dates to Date objects
+    const start = new Date(`${startDate}T00:00:00.000Z`);
+    const end = new Date(`${endDate}T23:59:59.999Z`);
+
+    console.log("Start:", start);
+    console.log("End:", end);
+
+    const entries = await entryModel.find({
+        user: req.user._id,
+        createdAt: {
+            $gte: start,
+            $lte: end
+        }
+    });
+
+    return res.status(200).json({
+        entries
+    });
+}
+
+
 module.exports = {
     create,
     fetch,
     remove,
     removeAll,
-    fetchEntry
+    fetchEntry,
+    getSummary
 
 }

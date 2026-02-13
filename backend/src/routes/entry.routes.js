@@ -10,5 +10,6 @@ router.post("/fetch", authMiddleware, entryController.fetch)
 router.delete("/delete/:id", authMiddleware, entryController.remove)
 router.delete("/delete/entries/all", authMiddleware, entryController.removeAll)
 router.post("/fetch/:id", authMiddleware, entryController.fetchEntry)
+router.post("/summary", authMiddleware, entryController.getSummary)
 
 module.exports = router;
