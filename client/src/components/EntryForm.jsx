@@ -19,7 +19,7 @@ function EntryForm({ onSubmit }) {
 
 
     return (
-        <section className="bg-white dark:bg-gray-900 w-fit rounded-2xl">
+        <section className="!bg-[#1f2637] dark:bg-gray-900 w-fit rounded-2xl">
             <div className="max-w-2xl h-fit px-6 py-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Add a new transaction</h2>
                 <form action="#" onSubmit={handleSubmit(onSubmit)}>
@@ -100,7 +100,7 @@ function EntryForm({ onSubmit }) {
                                     <option value="">Select category</option>
                                     <option value="grocery">Grocery</option>
                                     <option value="office-rent">Office rent</option>
-                                    <option value="wifi">Office WiFi recharge</option>
+                                    <option value="wifi">Office WiFi</option>
                                     <option value="entertainment">Entertainment</option>
                                     <option value="business">Business</option>
                                     <option value="other">Other</option>

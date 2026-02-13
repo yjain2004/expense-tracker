@@ -3,6 +3,7 @@ import { Button } from "flowbite-react";
 import { useAuth } from '../context/auth.context';
 import axios from "axios"
 import { useForm } from 'react-hook-form';
+import Filters from './Filters';
 
 function Datatable({ data, deleteEntry, deleteAll }) {
 
@@ -22,20 +23,54 @@ function Datatable({ data, deleteEntry, deleteAll }) {
 
         return `${day} ${month}, ${year} - ${hours}:${minutes} ${ampm}`;
     }
-
+    const [filters, setfilters] = useState("")
 
     const [search, setsearch] = useState("")
 
-    const filteredData = data?.filter((item) =>
-        search.trim() === ""
-            ? true
-            : item.title.toLowerCase().includes(search.toLowerCase())
-    );
-    useEffect(() => {
-        // console.log(search);
-        console.log(filteredData);
+    const filteredData = data?.filter((item) => {
+        const matchesSearch =
+            search.trim() === "" ||
+            item.title.toLowerCase().includes(search.toLowerCase());
 
-    }, [search])
+        const matchesType =
+            !filters?.type || item.type === filters.type;
+
+        const matchesCategory =
+            !filters?.category || item.category === filters.category;
+
+        const matchesDateRange = (() => {
+            if (!filters?.dateRange) return true;
+
+            const now = new Date();
+            const itemDate = new Date(item.createdAt);
+
+            if (filters.dateRange === "today") {
+                return itemDate.toDateString() === now.toDateString();
+            }
+
+            if (filters.dateRange === "7days") {
+                const sevenDaysAgo = new Date();
+                sevenDaysAgo.setDate(now.getDate() - 7);
+                return itemDate >= sevenDaysAgo;
+            }
+
+            if (filters.dateRange === "30days") {
+                const thirtyDaysAgo = new Date();
+                thirtyDaysAgo.setDate(now.getDate() - 30);
+                return itemDate >= thirtyDaysAgo;
+            }
+
+            return true;
+        })();
+
+        return (
+            matchesSearch &&
+            matchesType &&
+            matchesCategory &&
+            matchesDateRange
+        );
+    });
+
 
 
 
@@ -62,6 +97,7 @@ function Datatable({ data, deleteEntry, deleteAll }) {
                                 </div>
                             </form>
                         </div>
+
                         <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 shrink-0">
 
                             <div className="flex items-center space-x-3 w-full md:w-auto">
@@ -90,6 +126,11 @@ function Datatable({ data, deleteEntry, deleteAll }) {
                                 </button>
                             </div>
                         </div>
+                    </div>
+
+                    <div>
+                        <Filters onApply={(filters) => { setfilters(filters) }} onRemove={(filters) => { setfilters(filters) }} />
+
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

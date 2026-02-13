@@ -13,13 +13,15 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        </Routes>
-      </BrowserRouter>
+      <div id="rootContainer" className='bg-[#091321] h-screen'>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   )
 }
