@@ -63,7 +63,11 @@ async function login(req, res) {
     }, process.env.JWT_SECRET)
 
     //setting cookiein browser
-    res.cookie("token", token)
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        samSite: "none"
+    })
 
     //responding success message
     return res.status(200).json({
