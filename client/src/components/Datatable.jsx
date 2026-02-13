@@ -131,9 +131,6 @@ function Datatable({ data, deleteEntry, deleteAll }) {
                                     <th scope="col" className="px-4 py-3">Transaction title</th>
                                     <th scope="col" className="px-4 py-3">Transaction Type</th>
                                     <th scope="col" className="px-4 py-3">Amount</th>
-                                    <th scope="col" className="px-4 py-3">
-                                        <span className="sr-only">Actions</span>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,10 +141,6 @@ function Datatable({ data, deleteEntry, deleteAll }) {
                                         <th scope="row" className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.title}</th>
                                         <td className="px-4 py-3">{item.type} - {item.category && item.category}</td>
                                         <td className={`px-4 py-3 ${item.type.includes("expense") ? "text-rose-600" : "text-emerald-500"}`}>{item.amount}</td>
-                                        <td className="px-4 py-3 flex items-center justify-end">
-                                            <Button color="red" className='cursor-pointer' onClick={() => { deleteEntry(item._id) }}>Delete</Button>
-
-                                        </td>
                                     </tr>
 
 

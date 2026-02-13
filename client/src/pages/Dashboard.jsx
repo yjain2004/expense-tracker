@@ -49,7 +49,7 @@ function Dashboard() {
 
     async function getUserData() {
         try {
-            const res = await axios.post("http://localhost:3000/api/data/fetch", {}, { withCredentials: true })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/data/fetch`, {}, { withCredentials: true })
             if (res.data.entries.length <= 0) {
                 setdata(null)
             } else {
@@ -62,7 +62,7 @@ function Dashboard() {
 
     async function onSubmit(data) {
         try {
-            const res = await axios.post("http://localhost:3000/api/data/create", data, { withCredentials: true })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/data/create`, data, { withCredentials: true })
             getUserData()
         } catch (error) {
             alert(error?.response?.data?.message)
@@ -73,7 +73,7 @@ function Dashboard() {
     async function deleteEntry(id) {
         console.log(id);
         try {
-            await axios.delete(`http://localhost:3000/api/data/delete/${id}`, { withCredentials: true })
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/data/delete/${id}`, { withCredentials: true })
         } catch (error) {
             alert(error?.response?.data?.message)
         }
@@ -81,7 +81,7 @@ function Dashboard() {
     }
     async function deleteAll() {
         try {
-            await axios.delete(`http://localhost:3000/api/data/delete/entries/all`, { withCredentials: true })
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/data/delete/entries/all`, { withCredentials: true })
         } catch (error) {
             alert(error?.response?.data?.message)
         }
@@ -108,7 +108,7 @@ function Dashboard() {
 
         // API call
         try {
-            const res = await axios.post("http://localhost:3000/api/data/summary", {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/data/summary`, {
                 startDate,
                 endDate
             }, { withCredentials: true });

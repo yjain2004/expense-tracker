@@ -20,7 +20,7 @@ function Signup() {
     async function onSubmit(data) {
         console.log(data);
         try {
-            await axios.post("http://localhost:3000/api/auth/signup", data, { withCredentials: true })
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, data, { withCredentials: true })
             navigate("/login")
         } catch (error) {
             alert(error?.response?.data?.message)
