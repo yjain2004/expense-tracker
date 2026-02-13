@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-      <div id="rootContainer" className='bg-[#091321] h-screen'>
+      <div id="rootContainer" className='bg-[#091321] h-[100%]'>
         <BrowserRouter>
           <Routes>
             <Route path='/login' element={<Login />} />

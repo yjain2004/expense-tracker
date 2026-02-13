@@ -88,7 +88,7 @@ function Filters({ onApply, onRemove }) {
 
 
             {/* Filter Button */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center justify-center">
                 <button
                     onClick={applyFilters}
                     className="ml-auto bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-lg"
